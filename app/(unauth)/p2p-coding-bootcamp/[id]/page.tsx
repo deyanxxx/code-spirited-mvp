@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { generateClient } from "aws-amplify/data";
 import { Schema } from "@/amplify/data/resource";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import MarkdownIt from "markdown-it";
 
 const client = generateClient<Schema>({
@@ -16,23 +16,23 @@ const BootcampByIdPage = () => {
   const [bootcamp, setBootcamp] = useState<Schema["Bootcamp"]["type"] | null>(null);
   const [activeTab, setActiveTab] = useState("details");
 
-  const fetchBootcamp = async () => {
-    try {
-      const { data: item, errors } = await client.models.Bootcamp.get({ id });
-
-      if (item) {
-        setBootcamp(item);
-      }
-
-      if (errors) {
-        console.error(errors);
-      }
-    } catch (error) {
-      console.error("Error fetching bootcamp:", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchBootcamp = async () => {
+      try {
+        const { data: item, errors } = await client.models.Bootcamp.get({ id });
+
+        if (item) {
+          setBootcamp(item);
+        }
+
+        if (errors) {
+          console.error(errors);
+        }
+      } catch (error) {
+        console.error("Error fetching bootcamp:", error);
+      }
+    };
+
     fetchBootcamp();
   }, [id]);
 

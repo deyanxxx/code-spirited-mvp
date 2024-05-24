@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logout from "@/components/Logout";
-import { AuthGetCurrentUserServer } from "@/utils/amplify-utils";
+import { fetchAuthSession } from 'aws-amplify/auth';
 
 export default async function Layout(props: { children: React.ReactNode }) {
-  const user = await AuthGetCurrentUserServer();
+  const session = await fetchAuthSession();
 
   return (
     <div className="flex flex-col">
@@ -38,7 +38,7 @@ export default async function Layout(props: { children: React.ReactNode }) {
             >
               P2P Coding Bootcamp
             </Link>
-            {user && (
+            {session && (
               <Link
                 href="/profile"
                 className="hover:text-gray-900 text-gray-800 font-semibold"
@@ -48,7 +48,7 @@ export default async function Layout(props: { children: React.ReactNode }) {
             )}
           </nav>
           <div className="flex space-x-3">
-            {user ? (
+            {session ? (
               <Logout />
             ) : (
               <>

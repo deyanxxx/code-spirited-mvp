@@ -9,8 +9,14 @@ export const auth = defineAuth({
     email: true,
     externalProviders: {
       // ...
-      callbackUrls: ["http://localhost:3000/login"],
-      logoutUrls: ["http://localhost:3000/logout"],
+      callbackUrls: [
+        "http://localhost:3000/login",
+        "https://codespirited.com/login",
+      ],
+      logoutUrls: [
+        "http://localhost:3000/logout",
+        "https://codespirited.com/logout",
+      ],
     },
   },
   userAttributes: {

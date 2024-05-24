@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { generateClient } from "aws-amplify/data";
 import { Schema } from "@/amplify/data/resource";
 
@@ -9,10 +9,10 @@ const client = generateClient<Schema>({
 
 const BootcampPage = () => {
   const [bootcamps, setBootcamps] = useState<any>([]);
-  const selectionSet = [ 'title', 'description', 'level', 'duration', 'maxHeadcount', 'owner' ] as const;
-
-  const fetchBootcamps = async () => {
-    const { data: items, errors } = await client.models.Bootcamp.list(
+  
+  const fetchBootcamps = useCallback(async () => {
+    const selectionSet = [ 'title', 'description', 'level', 'duration', 'maxHeadcount', 'owner' ] as const;
+    const { data: items } = await client.models.Bootcamp.list(
       {
         selectionSet
       }
@@ -20,11 +20,11 @@ const BootcampPage = () => {
 
     console.log(items)
     setBootcamps(items);
-  };
+  }, []);
 
   useEffect(() => {
     fetchBootcamps();
-  }, []);
+  }, [fetchBootcamps]);
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">

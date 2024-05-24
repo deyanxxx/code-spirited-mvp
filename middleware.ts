@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Amplify } from "aws-amplify";
-
-import { AuthGetCurrentUserServer } from "@/utils/amplify-utils";
+import { fetchAuthSession } from "aws-amplify/auth";
 import outputs from "@/amplify_outputs.json";
 
 Amplify.configure(outputs, { ssr: true });
@@ -21,8 +20,8 @@ export async function middleware(request: NextRequest) {
   // Authentication check
   let authenticated = false;
   try {
-    const user = await AuthGetCurrentUserServer();
-    authenticated = !!user;
+    const session = await fetchAuthSession();
+    authenticated = !!session;
   } catch (error) {
     console.error("Error fetching current user:", error);
   }
