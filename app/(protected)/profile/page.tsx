@@ -46,7 +46,7 @@ const ProfilePage = () => {
         const attributes = await fetchUserAttributes();
         const currentUser = await getCurrentUser();
         setUser(currentUser);
-        console.log(currentUser, attributes);
+
         if (attributes) {
           setValue("email", attributes.email || "");
           setValue("fullName", attributes.name || "");

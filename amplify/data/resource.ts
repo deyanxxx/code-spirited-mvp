@@ -7,16 +7,6 @@ specifies that any unauthenticated user can "create", "read", "update",
 and "delete" any "Todo" records.
 =========================================================================*/
 const schema = a.schema({
-  Todo: a
-    .model({
-      content: a.string(),
-      done: a.boolean(),
-      priority: a.enum(["low", "medium", "high"]),
-    })
-    .authorization((allow) => [
-      allow.owner().to(["create", "read", "update", "delete"]),
-      allow.guest().to(["read"]),
-    ]),
     Bootcamp: a
     .model({
       title: a.string(),
@@ -39,8 +29,11 @@ const schema = a.schema({
       curriculum: a.string(),
     })
     .authorization((allow) => [
-      allow.owner().to(["create", "read", "update", "delete"]),
-      allow.guest().to(["read"]),
+      // Allow anyone auth'd with an API key to read everyone's posts.
+      allow.publicApiKey().to(['read']),
+      // Allow signed-in user to create, read, update,
+      // and delete their __OWN__ posts.
+      allow.owner(),
     ]),   
 });
 
@@ -49,7 +42,10 @@ export type Schema = ClientSchema<typeof schema>;
 export const data = defineData({
   schema,
   authorizationModes: {
-    defaultAuthorizationMode: "userPool",
+    defaultAuthorizationMode: 'apiKey',
+    apiKeyAuthorizationMode: {
+      expiresInDays: 30,
+    },
   },
 });
 

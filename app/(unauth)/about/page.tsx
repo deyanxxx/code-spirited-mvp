@@ -40,14 +40,14 @@ const AboutPage = () => {
 
       <section className="py-14 lg:py-24 relative">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="font-medium text-sm text-jaffa-500 uppercase mb-2">
+          <p className="font-medium text-sm text-jaffa-500 uppercase mb-2 max-md:text-center">
             CODE SPIRITED
           </p>
           <h2 className="font-manrope font-semibold text-4xl md:text-5xl text-gray-900 max-w-4xl md:leading-snug mb-6 max-md:text-center">
             &quot;Empowering Through Collaboration: A New Era in Coding
             Education&quot;
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-3 mb-12 lg:mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-3 mb-12 lg:mb-24">
             <p className="font-normal text-lg text-gray-500 max-md:text-center">
               Our &apos;Empowering Through Collaboration: A New Era in Coding
               Education&apos; module forms the backbone of our bootcamp,

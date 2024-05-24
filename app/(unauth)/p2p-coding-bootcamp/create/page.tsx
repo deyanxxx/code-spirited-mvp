@@ -14,9 +14,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MarkdownIt from "markdown-it";
 import { Schema } from "@/amplify/data/resource";
+import { useRouter } from "next/navigation";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'userPool',
+});
 
 // Define validation schema using Zod
 const schema = z.object({
@@ -41,6 +44,8 @@ const schema = z.object({
 });
 
 const CreatePage = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -54,9 +59,12 @@ const CreatePage = () => {
   const onSubmit = async (data: any) => {
     try {
       data.maxHeadcount = parseInt(data.maxHeadcount, 10);
-      await client.models.Bootcamp.create(data);
+      const result: any = await client.models.Bootcamp.create(data);
+      console.log(result);
       toast.success("Bootcamp created successfully!");
       reset();
+      setValue("curriculum", "");
+      router.push(`/p2p-coding-bootcamp/${result.data.id}`);
     } catch (error) {
       console.error(error);
       toast.error("Failed to create bootcamp.");

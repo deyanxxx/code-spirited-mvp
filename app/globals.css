@@ -32,12 +32,22 @@
   }
 }
 
-.rounded-gradient-background {
-  background: linear-gradient(135deg, #ffd3a8, #ffb370, #ff8736);
-  border-radius: 50%;
-  width: 200px; /* Adjust the width and height as needed */
-  height: 200px;
+.tabs {
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  border-bottom: 2px solid #000;
+}
+
+.tab:not(.active):hover {
+  background-color: #f0f0f0;
 }
