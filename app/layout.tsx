@@ -1,5 +1,4 @@
 // app/layout.tsx
-import "@aws-amplify/ui-react/styles.css";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ConfigureAmplifyClientSide from "@/components/ConfigureAmplify";
