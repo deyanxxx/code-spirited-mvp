@@ -39,7 +39,7 @@ const ResendCode = () => {
         "A new confirmation code has been sent to your email. Redirecting to confirmation page..."
       );
       setTimeout(
-        () => router.push(`/confirm-signup?email=${encodeURIComponent(email)}`),
+        () => router.push(`/confirm?email=${encodeURIComponent(email)}`),
         2000
       );
     } catch (error: any) {

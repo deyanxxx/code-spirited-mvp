@@ -127,7 +127,7 @@ const ConfirmCode = () => {
                     key={index}
                     type="text"
                     maxLength={1}
-                    ref={(el) => (codeRefs.current[index] = el)}
+                    ref={(el: any) => (codeRefs.current[index] = el)}
                     onPaste={handlePaste}
                     onChange={event => handleChange(event, index)}
                     onKeyDown={event => handleKeyDown(event, index)}
