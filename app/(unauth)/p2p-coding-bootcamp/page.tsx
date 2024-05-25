@@ -34,6 +34,14 @@ const BootcampPage = () => {
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <div className="space-y-8">
+        <div className="flex justify-end mb-4">
+          <a
+            href="/p2p-coding-bootcamp/create"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-jaffa-500 hover:bg-jaffa-600"
+          >
+            Create Bootcamp
+          </a>
+        </div>
         {bootcamps.length > 0 ? (
           bootcamps.map((bootcamp: any, idx: number) => (
             <div

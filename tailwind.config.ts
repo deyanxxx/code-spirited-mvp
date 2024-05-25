@@ -14,22 +14,22 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        'jaffa': {
-          '50': '#fff7ed',
-          '100': '#ffecd4',
-          '200': '#ffd6a8',
-          '300': '#ffb871',
-          '400': '#ff903b',
-          '500': '#fe6e11',
-          '600': '#ef5307',
-          '700': '#c63c08',
-          '800': '#9d310f',
-          '900': '#7e2a10',
-          '950': '#441206',
+        jaffa: {
+          "50": "#fff7ed",
+          "100": "#ffecd4",
+          "200": "#ffd6a8",
+          "300": "#ffb871",
+          "400": "#ff903b",
+          "500": "#fe6e11",
+          "600": "#ef5307",
+          "700": "#c63c08",
+          "800": "#9d310f",
+          "900": "#7e2a10",
+          "950": "#441206",
         },
-      }
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
 export default config;

@@ -1,6 +1,6 @@
 const App = async () => {
   return (
-    <section className="pt-8 lg:pt-32 bg-jaffa-100 bg-center bg-cover h-screen">
+    <section className="pt-24 lg:pt-32 bg-jaffa-100 bg-center bg-cover h-screen">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative text-center">
         <div className="border border-jaffa-600 p-1 max-w-64 mx-auto rounded-full flex items-center justify-between mb-4">
           <span className="font-inter text-xs font-medium text-gray-900 ml-3">
@@ -27,7 +27,7 @@ const App = async () => {
             </svg>
           </a>
         </div>
-        <h1 className="max-w-2xl mx-auto text-center font-manrope font-bold text-4xl text-gray-900 mb-5 md:text-5xl leading-[50px]">
+        <h1 className="max-w-2xl mx-auto text-center font-manrope font-bold text-4xl text-gray-700 mb-5 md:text-5xl leading-[50px]">
           Empowering Future
           <span className="text-jaffa-600"> Innovators!</span>
         </h1>
@@ -36,10 +36,10 @@ const App = async () => {
           and collaborating.
         </p>
         <a
-          href="/register"
+          href="/p2p-coding-bootcamp"
           className="w-full md:w-auto mb-14 inline-flex items-center justify-center py-3 px-7 text-base font-semibold text-center text-white rounded-full bg-jaffa-600 shadow-xs hover:bg-jaffa-700 transition-all duration-500"
         >
-          Create an account
+          Join a Bootcamp
           <svg
             className="ml-2"
             width="20"

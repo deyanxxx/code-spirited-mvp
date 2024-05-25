@@ -39,7 +39,7 @@ const BootcampByIdPage = () => {
   return (
     <div>
       {bootcamp && (
-        <div className="max-w-4xl mx-auto pt-16 p-7">
+        <div className="max-w-4xl mx-auto py-16 p-7">
           <h1 className="text-gray-900 text-center font-manrope text-3xl font-bold leading-10 mb-8">
             {bootcamp.title}
           </h1>
@@ -86,7 +86,7 @@ const BootcampByIdPage = () => {
                 <p className="text-gray-900">{bootcamp.prerequisites}</p>
               </div>
               <div>
-                <h2 className="text-gray-700 text-xl font-semibold">Instructors</h2>
+                <h2 className="text-gray-700 text-xl font-semibold">Instructors and Facilitators</h2>
                 <p className="text-gray-900">{bootcamp.instructors}</p>
               </div>
               <div>
@@ -120,7 +120,7 @@ const BootcampByIdPage = () => {
             </div>
           )}
           {activeTab === "curriculum" && (
-            <div className="markdown-body" dangerouslySetInnerHTML={{ __html: mdParser.render(bootcamp.curriculum || '') }}></div>
+            <div className="markdown-body prose lg:prose-xl" dangerouslySetInnerHTML={{ __html: mdParser.render(bootcamp.curriculum || '') }}></div>
           )}
         </div>
       )}

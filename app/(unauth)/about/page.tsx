@@ -9,7 +9,7 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 mb-24 lg:grid-cols-12 xl:gap-24 lg:gap-6 gap-4 items-center">
             <div className="w-full lg:col-span-5 lg:pb-0 pb-12 md:order-first">
               <div className="text-center lg:text-left lg:max-w-xl">
-                <h1 className="pb-5 text-center text-gray-900 font-extrabold font-manrope text-5xl lg:text-left">
+                <h1 className="pb-5 text-center text-gray-700 font-extrabold font-manrope text-5xl lg:text-left">
                   It&apos;s all about the
                   <span className="block text-jaffa-600 font-extrabold font-manrope text-5xl leading-relaxed">
                     learning journey
@@ -43,7 +43,7 @@ const AboutPage = () => {
           <p className="font-medium text-sm text-jaffa-500 uppercase mb-2 max-md:text-center">
             CODE SPIRITED
           </p>
-          <h2 className="font-manrope font-semibold text-4xl md:text-5xl text-gray-900 max-w-4xl md:leading-snug mb-6 max-md:text-center">
+          <h2 className="font-manrope font-semibold text-4xl md:text-5xl text-gray-700 max-w-4xl md:leading-snug mb-6 max-md:text-center">
             &quot;Empowering Through Collaboration: A New Era in Coding
             Education&quot;
           </h2>

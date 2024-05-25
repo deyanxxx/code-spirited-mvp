@@ -27,26 +27,26 @@ const Header = async () => {
         <nav className="space-x-4 hidden lg:flex">
           <Link
             href="/"
-            className="hover:text-gray-900 text-gray-800 font-semibold"
+            className="hover:text-gray-800 text-gray-700 font-semibold"
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="hover:text-gray-900 text-gray-800 font-semibold"
+            className="hover:text-gray-800 text-gray-700 font-semibold"
           >
             About
           </Link>
           <Link
             href="/p2p-coding-bootcamp"
-            className="hover:text-gray-900 text-gray-800 font-semibold"
+            className="hover:text-gray-800 text-gray-700 font-semibold"
           >
             P2P Coding Bootcamp
           </Link>
           {user && (
             <Link
               href="/account"
-              className="hover:text-gray-900 text-gray-800 font-semibold"
+              className="hover:text-gray-800 text-gray-700 font-semibold"
             >
               Account
             </Link>
@@ -59,13 +59,13 @@ const Header = async () => {
             <>
               <Link
                 href="/login"
-                className="border border-jaffa-600 px-4 py-2 rounded-full text-jaffa-600 hover:bg-jaffa-600 hover:text-white transition-all duration-700"
+                className="border-none px-4 py-2 rounded-full text-white hover:bg-jaffa-600 hover:text-white transition-all duration-700"
               >
                 Login
               </Link>
               <Link
                 href="/register"
-                className="bg-jaffa-600 px-4 py-2 rounded-full text-white hover:bg-jaffa-800 transition-all duration-700"
+                className="bg-jaffa-600 px-4 py-2 rounded-full text-white hover:bg-jaffa-700 transition-all duration-700"
               >
                 Register
               </Link>

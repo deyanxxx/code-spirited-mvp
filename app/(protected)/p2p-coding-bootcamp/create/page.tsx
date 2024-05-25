@@ -71,11 +71,11 @@ const CreatePage = () => {
     }
   };
 
-  const handleGenerateCurriculum = () => {
-    const generatedContent =
-      "## AI Generated Curriculum\n\n- Topic 1\n- Topic 2\n- Topic 3";
-    setValue("curriculum", generatedContent);
-  };
+  // const handleGenerateCurriculum = () => {
+  //   const generatedContent =
+  //     "## AI Generated Curriculum\n\n- Topic 1\n- Topic 2\n- Topic 3";
+  //   setValue("curriculum", generatedContent);
+  // };
 
   function handleEditorChange({ html, text }: any) {
     setValue("curriculum", text);
@@ -237,7 +237,7 @@ const CreatePage = () => {
             </div>
             <div className="lg:col-span-2">
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                Instructors
+                Instructors and Facilitators
               </label>
               <textarea
                 {...register("instructors")}
@@ -374,13 +374,13 @@ const CreatePage = () => {
                   },
                 }}
               />
-              <button
+              {/* <button
                 type="button"
                 onClick={handleGenerateCurriculum}
                 className="w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-800 transition-all duration-700 bg-jaffa-600 shadow-sm"
               >
                 Generate Curriculum with AI
-              </button>
+              </button> */}
             </div>
             {errors.curriculum && (
               <p className="mt-1 text-red-500">
