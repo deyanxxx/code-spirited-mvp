@@ -1,33 +1,39 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { signUp } from 'aws-amplify/auth';
-import { useRouter } from 'next/navigation';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Image from 'next/image';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signUp } from "aws-amplify/auth";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
 // Define validation schema using Zod
-const schema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters long'),
-  confirmPassword: z.string().min(6, 'Password must be at least 6 characters long'),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ['confirmPassword'],
-});
+const schema = z
+  .object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters long"),
+    confirmPassword: z
+      .string()
+      .min(6, "Password must be at least 6 characters long"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
+
+type IFormInput = z.infer<typeof schema>;
 
 const Register = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IFormInput>({
     resolver: zodResolver(schema),
   });
 
@@ -37,12 +43,15 @@ const Register = () => {
     try {
       const { email, password } = data;
       await signUp({ username: email, password });
-      
-      toast.success('Sign-up successful! Redirecting to confirmation page...');
-      setTimeout(() => router.push(`/confirm?email=${encodeURIComponent(email)}`), 2000);
+
+      toast.success("Sign-up successful! Redirecting to confirmation page...");
+      setTimeout(
+        () => router.push(`/confirm?email=${encodeURIComponent(email)}`),
+        2000
+      );
     } catch (error: any) {
-      console.error('Error signing up:', error);
-      toast.error('Error signing up. Please try again.');
+      console.error("Error signing up:", error);
+      toast.error("Error signing up. Please try again.");
     }
   };
 
@@ -58,7 +67,10 @@ const Register = () => {
             height={450}
           />
           <div className="rounded-2xl bg-white shadow-xl">
-            <form onSubmit={handleSubmit(onSubmit)} className="lg:p-11 p-7 mx-auto">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="lg:p-11 p-7 mx-auto"
+            >
               <div className="mb-11">
                 <h1 className="text-gray-900 text-center font-manrope text-3xl font-bold leading-10 mb-2">
                   Create an Account
@@ -69,7 +81,7 @@ const Register = () => {
               </div>
 
               <input
-                {...register('email')}
+                {...register("email")}
                 id="email"
                 name="email"
                 type="email"
@@ -79,11 +91,13 @@ const Register = () => {
                 placeholder="Email address"
               />
               {errors.email && (
-                <p className="mt-1 text-jaffa-500">{(errors.email as any).message}</p>
+                <p className="mt-1 text-jaffa-500">
+                  {(errors.email as any).message}
+                </p>
               )}
 
               <input
-                {...register('password')}
+                {...register("password")}
                 id="password"
                 name="password"
                 type="password"
@@ -93,11 +107,13 @@ const Register = () => {
                 placeholder="Password"
               />
               {errors.password && (
-                <p className="mt-1 text-jaffa-500">{(errors.password as any).message}</p>
+                <p className="mt-1 text-jaffa-500">
+                  {(errors.password as any).message}
+                </p>
               )}
 
               <input
-                {...register('confirmPassword')}
+                {...register("confirmPassword")}
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
@@ -107,7 +123,9 @@ const Register = () => {
                 placeholder="Confirm Password"
               />
               {errors.confirmPassword && (
-                <p className="mt-1 text-jaffa-500">{(errors.confirmPassword as any).message}</p>
+                <p className="mt-1 text-jaffa-500">
+                  {(errors.confirmPassword as any).message}
+                </p>
               )}
 
               <button
@@ -117,9 +135,15 @@ const Register = () => {
                 Register
               </button>
 
-              <a href="/login" className="flex justify-center text-gray-900 text-base font-medium leading-6">
+              <a
+                href="/login"
+                className="flex justify-center text-gray-900 text-base font-medium leading-6"
+              >
                 Already have an account?
-                <span className="text-jaffa-600 font-semibold pl-3"> Login</span>
+                <span className="text-jaffa-600 font-semibold pl-3">
+                  {" "}
+                  Login
+                </span>
               </a>
             </form>
           </div>

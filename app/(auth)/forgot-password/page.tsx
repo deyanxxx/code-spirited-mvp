@@ -1,7 +1,5 @@
-import AuthLayout from '@/components/auth/AuthLayout';
-import ForgotPassword from '@/components/auth/ForgotPassword';
-
-import React from 'react';
+import AuthLayout from "@/layouts/AuthLayout";
+import ForgotPassword from "@/components/auth/ForgotPassword";
 
 const ForgotPasswordPage = () => (
   <AuthLayout>

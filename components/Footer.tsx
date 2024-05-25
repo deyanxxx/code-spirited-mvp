@@ -35,7 +35,7 @@ const Footer = () => {
           </ul>
 
           <span className="text-lg text-gray-500 text-center block">
-            ©<a href="https://codespirited.com/">Code Spirited</a> 2024, All rights
+            <a href="https://codespirited.com/">Code Spirited</a> 2024, All rights
             reserved.
           </span>
         </div>

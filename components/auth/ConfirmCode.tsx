@@ -1,22 +1,26 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { confirmSignUp } from 'aws-amplify/auth';
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Image from 'next/image';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { confirmSignUp } from "aws-amplify/auth";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
 // Define validation schema using Zod
 const schema = z.object({
-  email: z.string().email('Invalid email address'),
-  code: z.string().min(6, 'Confirmation code must be at least 6 characters long'),
+  email: z.string().email("Invalid email address"),
+  code: z
+    .string()
+    .min(6, "Confirmation code must be at least 6 characters long"),
 });
+
+type IFormInput = z.infer<typeof schema>;
 
 const ConfirmCode = () => {
   const {
@@ -24,17 +28,17 @@ const ConfirmCode = () => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm({
+  } = useForm<IFormInput>({
     resolver: zodResolver(schema),
   });
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const emailParam = searchParams.get('email');
+  const emailParam = searchParams.get("email");
 
   useEffect(() => {
     if (emailParam) {
-      setValue('email', emailParam);
+      setValue("email", emailParam);
     }
   }, [emailParam, setValue]);
 
@@ -43,11 +47,13 @@ const ConfirmCode = () => {
       const { email, code } = data;
       await confirmSignUp({ username: email, confirmationCode: code });
 
-      toast.success('Account confirmed successfully! Redirecting to login page...');
-      setTimeout(() => router.push('/login'), 2000);
+      toast.success(
+        "Account confirmed successfully! Redirecting to login page..."
+      );
+      setTimeout(() => router.push("/login"), 2000);
     } catch (error: any) {
-      toast.error('Error confirming sign up. Please try again.');
-      console.error('Error confirming sign up:', error);
+      toast.error("Error confirming sign up. Please try again.");
+      console.error("Error confirming sign up:", error);
     }
   };
 
@@ -63,7 +69,10 @@ const ConfirmCode = () => {
             height={450}
           />
           <div className="rounded-2xl bg-white shadow-xl">
-            <form onSubmit={handleSubmit(onSubmit)} className="lg:p-11 p-7 mx-auto">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="lg:p-11 p-7 mx-auto"
+            >
               <div className="mb-11">
                 <h1 className="text-gray-900 text-center font-manrope text-3xl font-bold leading-10 mb-2">
                   Confirm your account
@@ -74,7 +83,7 @@ const ConfirmCode = () => {
               </div>
 
               <input
-                {...register('email')}
+                {...register("email")}
                 id="email"
                 name="email"
                 type="email"
@@ -84,11 +93,13 @@ const ConfirmCode = () => {
                 placeholder="Email address"
               />
               {errors.email && (
-                <p className="mt-1 text-jaffa-500">{(errors.email as any).message}</p>
+                <p className="mt-1 text-jaffa-500">
+                  {(errors.email as any).message}
+                </p>
               )}
 
               <input
-                {...register('code')}
+                {...register("code")}
                 id="code"
                 name="code"
                 type="text"
@@ -98,7 +109,9 @@ const ConfirmCode = () => {
                 placeholder="Confirmation Code"
               />
               {errors.code && (
-                <p className="mt-1 text-jaffa-500">{(errors.code as any).message}</p>
+                <p className="mt-1 text-jaffa-500">
+                  {(errors.code as any).message}
+                </p>
               )}
 
               <button
@@ -107,9 +120,14 @@ const ConfirmCode = () => {
               >
                 Confirm
               </button>
-              <a href="/register" className="flex justify-center text-gray-900 text-base font-medium leading-6">
-            Didn&apos;t receive a code?{' '}
-                <span className="text-jaffa-600 font-semibold pl-3">Resend code</span>
+              <a
+                href="/register"
+                className="flex justify-center text-gray-900 text-base font-medium leading-6"
+              >
+                Didn&apos;t receive a code?{" "}
+                <span className="text-jaffa-600 font-semibold pl-3">
+                  Resend code
+                </span>
               </a>
             </form>
           </div>

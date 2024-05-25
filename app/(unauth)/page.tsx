@@ -28,11 +28,12 @@ const App = async () => {
           </a>
         </div>
         <h1 className="max-w-2xl mx-auto text-center font-manrope font-bold text-4xl text-gray-900 mb-5 md:text-5xl leading-[50px]">
-        Empowering Future
+          Empowering Future
           <span className="text-jaffa-600"> Innovators!</span>
         </h1>
         <p className="max-w-sm mx-auto text-center text-base font-normal leading-7 text-gray-500 mb-9">
-          At Code Spirited, we believe that the best way to learn is by doing and collaborating.
+          At Code Spirited, we believe that the best way to learn is by doing
+          and collaborating.
         </p>
         <a
           href="/register"

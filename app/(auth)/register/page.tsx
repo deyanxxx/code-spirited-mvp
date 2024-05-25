@@ -1,7 +1,5 @@
-import AuthLayout from '@/components/auth/AuthLayout';
-import Register from '@/components/auth/Register';
-
-import React from 'react';
+import AuthLayout from "@/layouts/AuthLayout";
+import Register from "@/components/auth/Register";
 
 const RegisterPage = () => (
   <AuthLayout>

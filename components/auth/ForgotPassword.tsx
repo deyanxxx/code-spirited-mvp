@@ -1,23 +1,27 @@
-'use client';
+"use client";
 
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { resetPassword } from 'aws-amplify/auth';
-import { z } from 'zod';
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Image from 'next/image';
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { resetPassword } from "aws-amplify/auth";
+import { z } from "zod";
+import React from "react";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
 const schema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.string().email("Invalid email address"),
 });
 
 type IFormInput = z.infer<typeof schema>;
 
 const ForgotPassword = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>({
     resolver: zodResolver(schema),
   });
 
@@ -26,11 +30,19 @@ const ForgotPassword = () => {
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
       await resetPassword({ username: data.email });
-      toast.success('A reset code has been sent to your email address. Redirecting to reset password page...');
-      setTimeout(() => router.push(`/reset-password?email=${encodeURIComponent(data.email)}`), 2000);
+      toast.success(
+        "A reset code has been sent to your email address. Redirecting to reset password page..."
+      );
+      setTimeout(
+        () =>
+          router.push(
+            `/reset-password?email=${encodeURIComponent(data.email)}`
+          ),
+        2000
+      );
     } catch (error: any) {
-      toast.error('Error sending reset code. Please try again.');
-      console.error('Error sending reset code:', error);
+      toast.error("Error sending reset code. Please try again.");
+      console.error("Error sending reset code:", error);
     }
   };
 
@@ -46,7 +58,10 @@ const ForgotPassword = () => {
             height={450}
           />
           <div className="rounded-2xl bg-white shadow-xl">
-            <form onSubmit={handleSubmit(onSubmit)} className="lg:p-11 p-7 mx-auto">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="lg:p-11 p-7 mx-auto"
+            >
               <div className="mb-11">
                 <h1 className="text-gray-900 text-center font-manrope text-3xl font-bold leading-10 mb-2">
                   Forgot Password
@@ -57,7 +72,7 @@ const ForgotPassword = () => {
               </div>
 
               <input
-                {...register('email')}
+                {...register("email")}
                 id="email"
                 name="email"
                 type="email"

@@ -1,38 +1,51 @@
-'use client';
+"use client";
 
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { confirmResetPassword } from 'aws-amplify/auth';
-import { z } from 'zod';
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Image from 'next/image';
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { confirmResetPassword } from "aws-amplify/auth";
+import { z } from "zod";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
-const schema = z.object({
-  email: z.string().email('Invalid email address'),
-  code: z.string().min(6, 'Verification code must be at least 6 characters long'),
-  newPassword: z.string().min(6, 'Password must be at least 6 characters long'),
-  confirmPassword: z.string().min(6, 'Password must be at least 6 characters long'),
-}).refine((data) => data.newPassword === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ['confirmPassword'],
-});
+const schema = z
+  .object({
+    email: z.string().email("Invalid email address"),
+    code: z
+      .string()
+      .min(6, "Verification code must be at least 6 characters long"),
+    newPassword: z
+      .string()
+      .min(6, "Password must be at least 6 characters long"),
+    confirmPassword: z
+      .string()
+      .min(6, "Password must be at least 6 characters long"),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
 
 type IFormInput = z.infer<typeof schema>;
 
-const ResetPassword = () => {
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm<IFormInput>({
+const ResetPassword: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<IFormInput>({
     resolver: zodResolver(schema),
   });
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const email = searchParams.get('email') || '';
+  const email = searchParams.get("email") || "";
 
   useEffect(() => {
-    setValue('email', email);
+    setValue("email", email);
   }, [email, setValue]);
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
@@ -42,11 +55,13 @@ const ResetPassword = () => {
         confirmationCode: data.code,
         newPassword: data.newPassword,
       });
-      toast.success('Password reset successfully! Redirecting to login page...');
-      setTimeout(() => router.push('/login'), 2000);
-    } catch (error: any) {
-      toast.error('Error resetting password. Please try again.');
-      console.error('Error resetting password:', error);
+      toast.success(
+        "Password reset successfully! Redirecting to login page..."
+      );
+      setTimeout(() => router.push("/login"), 2000);
+    } catch (error) {
+      toast.error("Error resetting password. Please try again.");
+      console.error("Error resetting password:", error);
     }
   };
 
@@ -62,7 +77,10 @@ const ResetPassword = () => {
             height={450}
           />
           <div className="rounded-2xl bg-white shadow-xl">
-            <form onSubmit={handleSubmit(onSubmit)} className="lg:p-11 p-7 mx-auto">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="lg:p-11 p-7 mx-auto"
+            >
               <div className="mb-11">
                 <h1 className="text-gray-900 text-center font-manrope text-3xl font-bold leading-10 mb-2">
                   Reset Password
@@ -73,7 +91,7 @@ const ResetPassword = () => {
               </div>
 
               <input
-                {...register('email')}
+                {...register("email")}
                 id="email"
                 name="email"
                 type="email"
@@ -87,7 +105,7 @@ const ResetPassword = () => {
               )}
 
               <input
-                {...register('code')}
+                {...register("code")}
                 id="code"
                 name="code"
                 type="text"
@@ -101,7 +119,7 @@ const ResetPassword = () => {
               )}
 
               <input
-                {...register('newPassword')}
+                {...register("newPassword")}
                 id="newPassword"
                 name="newPassword"
                 type="password"
@@ -111,11 +129,13 @@ const ResetPassword = () => {
                 placeholder="New Password"
               />
               {errors.newPassword && (
-                <p className="mt-1 text-jaffa-500">{errors.newPassword.message}</p>
+                <p className="mt-1 text-jaffa-500">
+                  {errors.newPassword.message}
+                </p>
               )}
 
               <input
-                {...register('confirmPassword')}
+                {...register("confirmPassword")}
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
@@ -125,7 +145,9 @@ const ResetPassword = () => {
                 placeholder="Confirm New Password"
               />
               {errors.confirmPassword && (
-                <p className="mt-1 text-jaffa-500">{errors.confirmPassword.message}</p>
+                <p className="mt-1 text-jaffa-500">
+                  {errors.confirmPassword.message}
+                </p>
               )}
 
               <button

@@ -1,28 +1,30 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { resendSignUpCode } from 'aws-amplify/auth';
-import { useRouter } from 'next/navigation';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Image from 'next/image';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { resendSignUpCode } from "aws-amplify/auth";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
 // Define validation schema using Zod
 const schema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.string().email("Invalid email address"),
 });
+
+type IFormInput = z.infer<typeof schema>;
 
 const ResendCode = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IFormInput>({
     resolver: zodResolver(schema),
   });
 
@@ -33,12 +35,16 @@ const ResendCode = () => {
       const { email } = data;
       await resendSignUpCode({ username: email });
 
-      toast.success('A new confirmation code has been sent to your email. Redirecting to confirmation page...');
-      setTimeout(() => router.push(`/confirm-signup?email=${encodeURIComponent(email)}`), 2000);
-    
+      toast.success(
+        "A new confirmation code has been sent to your email. Redirecting to confirmation page..."
+      );
+      setTimeout(
+        () => router.push(`/confirm-signup?email=${encodeURIComponent(email)}`),
+        2000
+      );
     } catch (error: any) {
-      toast.error('Error resending code. Please try again.');
-      console.error('Error resending code:', error);
+      toast.error("Error resending code. Please try again.");
+      console.error("Error resending code:", error);
     }
   };
 
@@ -54,7 +60,10 @@ const ResendCode = () => {
             height={450}
           />
           <div className="rounded-2xl bg-white shadow-xl">
-            <form onSubmit={handleSubmit(onSubmit)} className="lg:p-11 p-7 mx-auto">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="lg:p-11 p-7 mx-auto"
+            >
               <div className="mb-11">
                 <h1 className="text-gray-900 text-center font-manrope text-3xl font-bold leading-10 mb-2">
                   Resend Code
@@ -65,7 +74,7 @@ const ResendCode = () => {
               </div>
 
               <input
-                {...register('email')}
+                {...register("email")}
                 id="email"
                 name="email"
                 type="email"
@@ -75,7 +84,9 @@ const ResendCode = () => {
                 placeholder="Email address"
               />
               {errors.email && (
-                <p className="mt-1 text-jaffa-500">{(errors.email as any).message}</p>
+                <p className="mt-1 text-jaffa-500">
+                  {(errors.email as any).message}
+                </p>
               )}
 
               <button

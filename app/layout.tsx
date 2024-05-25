@@ -1,9 +1,6 @@
-// app/layout.tsx
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ConfigureAmplifyClientSide from "@/components/ConfigureAmplify";
 import { Metadata } from "next/types";
-import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +16,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ConfigureAmplifyClientSide />
-
-        {children}
-
-        <Footer />
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

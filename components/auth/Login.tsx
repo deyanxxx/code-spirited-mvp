@@ -1,29 +1,31 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { signIn } from 'aws-amplify/auth';
-import { useRouter } from 'next/navigation';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Image from 'next/image';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "aws-amplify/auth";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
 // Define validation schema using Zod
 const schema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters long'),
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters long"),
 });
+
+type IFormInput = z.infer<typeof schema>;
 
 const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IFormInput>({
     resolver: zodResolver(schema),
   });
 
@@ -33,15 +35,23 @@ const Login = () => {
     try {
       await signIn({ username: data.email, password: data.password });
 
-      toast.success('Signed in successfully!');
-      setTimeout(() => router.push('/'), 2000);
+      toast.success("Signed in successfully!");
+      setTimeout(() => router.push("/"), 2000);
     } catch (error: any) {
-      if (error.code === 'UserNotConfirmedException') {
-        toast.info('Account not confirmed. Redirecting to confirmation page...');
-        setTimeout(() => router.push(`/confirm-signup?email=${encodeURIComponent(data.email)}`), 2000);
+      if (error.code === "UserNotConfirmedException") {
+        toast.info(
+          "Account not confirmed. Redirecting to confirmation page..."
+        );
+        setTimeout(
+          () =>
+            router.push(
+              `/confirm-signup?email=${encodeURIComponent(data.email)}`
+            ),
+          2000
+        );
       } else {
-        toast.error('Error signing in. Please try again.');
-        console.error('Error signing in:', error);
+        toast.error("Error signing in. Please try again.");
+        console.error("Error signing in:", error);
         // Optionally, handle other errors here
       }
     }
@@ -50,7 +60,6 @@ const Login = () => {
   return (
     <>
       <section className="flex justify-center relative ">
-        
         <div className="mx-auto max-w-lg px-6 lg:px-8 absolute py-20">
           <Image
             src="/logo.svg"
@@ -60,7 +69,10 @@ const Login = () => {
             height={450}
           />
           <div className="rounded-2xl bg-white shadow-xl">
-            <form onSubmit={handleSubmit(onSubmit)} className="lg:p-11 p-7 mx-auto">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="lg:p-11 p-7 mx-auto"
+            >
               <div className="mb-11">
                 <h1 className="text-gray-900 text-center font-manrope text-3xl font-bold leading-10 mb-2">
                   Welcome Back
@@ -71,7 +83,7 @@ const Login = () => {
               </div>
 
               <input
-                {...register('email')}
+                {...register("email")}
                 id="email"
                 name="email"
                 type="email"
@@ -81,11 +93,13 @@ const Login = () => {
                 placeholder="Email address"
               />
               {errors.email && (
-                <p className="mt-1 text-jaffa-500">{(errors.email as any).message}</p>
+                <p className="mt-1 text-jaffa-500">
+                  {(errors.email as any).message}
+                </p>
               )}
 
               <input
-                {...register('password')}
+                {...register("password")}
                 id="password"
                 name="password"
                 type="password"
@@ -95,7 +109,9 @@ const Login = () => {
                 placeholder="Password"
               />
               {errors.password && (
-                <p className="mt-1 text-jaffa-500">{(errors.password as any).message}</p>
+                <p className="mt-1 text-jaffa-500">
+                  {(errors.password as any).message}
+                </p>
               )}
 
               <a href="/forgot-password" className="flex justify-end mb-6">
@@ -111,9 +127,15 @@ const Login = () => {
                 Login
               </button>
 
-              <a href="/register" className="flex justify-center text-gray-900 text-base font-medium leading-6">
+              <a
+                href="/register"
+                className="flex justify-center text-gray-900 text-base font-medium leading-6"
+              >
                 Don’t have an account?
-                <span className="text-jaffa-600 font-semibold pl-3"> Register</span>
+                <span className="text-jaffa-600 font-semibold pl-3">
+                  {" "}
+                  Register
+                </span>
               </a>
             </form>
           </div>

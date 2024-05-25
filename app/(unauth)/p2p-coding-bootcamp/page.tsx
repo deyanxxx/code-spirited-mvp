@@ -4,21 +4,26 @@ import { generateClient } from "aws-amplify/data";
 import { Schema } from "@/amplify/data/resource";
 
 const client = generateClient<Schema>({
-  authMode: 'apiKey',
+  authMode: "apiKey",
 });
 
 const BootcampPage = () => {
   const [bootcamps, setBootcamps] = useState<any>([]);
-  
-  const fetchBootcamps = useCallback(async () => {
-    const selectionSet = [ 'title', 'description', 'level', 'duration', 'maxHeadcount', 'owner' ] as const;
-    const { data: items } = await client.models.Bootcamp.list(
-      {
-        selectionSet
-      }
-    );
 
-    console.log(items)
+  const fetchBootcamps = useCallback(async () => {
+    const selectionSet = [
+      "title",
+      "description",
+      "level",
+      "duration",
+      "maxHeadcount",
+      "owner",
+      "id"
+    ] as const;
+    const { data: items } = await client.models.Bootcamp.list({
+      selectionSet,
+    });
+
     setBootcamps(items);
   }, []);
 
@@ -67,7 +72,7 @@ const BootcampPage = () => {
           <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="space-y-8 min-h-screen">
               <div className="text-center">
-                You need to log in to see the available P2P coding bootcamps.
+                Loading...
               </div>
             </div>
           </div>
