@@ -49,6 +49,12 @@ const HeaderClient = ({ user }: any) => {
           >
             P2P Coding Bootcamp
           </Link>
+          <Link
+            href="/contact"
+            className="hover:text-jaffa-500 text-gray-700 font-semibold"
+          >
+            Contact Us
+          </Link>
           {user && (
             <Link
               href="/account"
@@ -101,6 +107,13 @@ const HeaderClient = ({ user }: any) => {
             onClick={toggleNav}
           >
             P2P Coding Bootcamp
+          </Link>
+          <Link
+            href="/contact"
+            className="block hover:text-gray-800 text-gray-700 font-semibold"
+            onClick={toggleNav}
+          >
+            Contact Us
           </Link>
           {user && (
             <Link

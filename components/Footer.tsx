@@ -32,6 +32,11 @@ const Footer = () => {
                 P2P Coding Bootcamp
               </a>
             </li>
+            <li>
+              <a href="/contact" className=" text-gray-700 hover:text-jaffa-600">
+                Contact Us
+              </a>
+            </li>
           </ul>
 
           <span className="text-sm text-gray-500 text-center block">
