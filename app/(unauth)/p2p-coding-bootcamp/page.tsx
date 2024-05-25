@@ -2,6 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { generateClient } from "aws-amplify/data";
 import { Schema } from "@/amplify/data/resource";
+import Loader from "@/components/Loader";
 
 const client = generateClient<Schema>({
   authMode: "apiKey",
@@ -37,7 +38,7 @@ const BootcampPage = () => {
         <div className="flex justify-end mb-4">
           <a
             href="/p2p-coding-bootcamp/create"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-jaffa-500 hover:bg-jaffa-600"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-jaffa-500 hover:bg-jaffa-600"
           >
             Create Bootcamp
           </a>
@@ -80,7 +81,7 @@ const BootcampPage = () => {
           <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="space-y-8 min-h-screen">
               <div className="text-center">
-                Loading...
+                <Loader />
               </div>
             </div>
           </div>

@@ -59,7 +59,7 @@ const ResendCode = () => {
             width={2294}
             height={450}
           />
-          <div className="rounded-2xl bg-white shadow-xl">
+          <div className="rounded-2xl bg-white border-4 border-jaffa-400">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="lg:p-11 p-7 mx-auto"
@@ -91,7 +91,7 @@ const ResendCode = () => {
 
               <button
                 type="submit"
-                className="w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-800 transition-all duration-700 bg-jaffa-600 shadow-sm mb-11"
+                className="w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-600 transition-all duration-700 bg-jaffa-500 shadow-sm mb-11"
               >
                 Resend Code
               </button>

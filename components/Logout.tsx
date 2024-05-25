@@ -12,7 +12,7 @@ export default function Logout() {
         await signOut();
         router.push("/login");
       }}
-      className="bg-jaffa-600 px-4 py-2 rounded-full text-white hover:bg-jaffa-800 transition-all duration-700"
+      className="bg-jaffa-600 px-4 py-2 rounded-full text-white hover:bg-jaffa-600 transition-all duration-700"
     >
       Logout
     </button>

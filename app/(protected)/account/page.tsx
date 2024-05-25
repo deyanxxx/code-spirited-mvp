@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "@/components/Loader";
 
 // Define validation schema using Zod
 const schema = z.object({
@@ -134,7 +135,7 @@ const ProfilePage = () => {
           </div>
 
           {loading ? (
-            <p className="pb-3">Loading...</p>
+            <Loader />
           ) : (
             <>
               <div className="mb-6 flex justify-center">
@@ -163,7 +164,7 @@ const ProfilePage = () => {
                 <button
                   type="button"
                   onClick={handleFileUpload}
-                  className="mt-2 w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-800 transition-all duration-700 bg-jaffa-600 shadow-sm"
+                  className="mt-2 w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-600 transition-all duration-700 bg-jaffa-500 shadow-sm"
                 >
                   Upload Picture
                 </button>
@@ -262,7 +263,7 @@ const ProfilePage = () => {
               </div>
               <button
                 type="submit"
-                className="w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-800 transition-all duration-700 bg-jaffa-600 shadow-sm mb-11"
+                className="w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-600 transition-all duration-700 bg-jaffa-500 shadow-sm mb-11"
               >
                 Update Profile
               </button>

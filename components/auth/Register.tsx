@@ -44,7 +44,7 @@ const Register = () => {
       const { email, password } = data;
       await signUp({ username: email, password });
 
-      toast.success("Sign-up successful! Redirecting to confirmation page...");
+      toast.success("Register successful! Redirecting to confirmation page...");
       setTimeout(
         () => router.push(`/confirm?email=${encodeURIComponent(email)}`),
         2000
@@ -66,7 +66,7 @@ const Register = () => {
             width={2294}
             height={450}
           />
-          <div className="rounded-2xl bg-white shadow-xl">
+          <div className="rounded-2xl bg-white border-4 border-jaffa-400">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="lg:p-11 p-7 mx-auto"
@@ -130,7 +130,7 @@ const Register = () => {
 
               <button
                 type="submit"
-                className="w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-800 transition-all duration-700 bg-jaffa-600 shadow-sm mb-11"
+                className="w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-600 transition-all duration-700 bg-jaffa-500 shadow-sm mb-11"
               >
                 Register
               </button>
@@ -140,7 +140,7 @@ const Register = () => {
                 className="flex justify-center text-gray-900 text-base font-medium leading-6"
               >
                 Already have an account?
-                <span className="text-jaffa-600 font-semibold pl-3">
+                <span className="text-jaffa-500 font-semibold pl-3">
                   {" "}
                   Login
                 </span>

@@ -35,7 +35,7 @@ const Login = () => {
     try {
       await signIn({ username: data.email, password: data.password });
 
-      toast.success("Signed in successfully!");
+      toast.success("Logged in successfully!");
       setTimeout(() => router.push("/"), 2000);
     } catch (error: any) {
       if (error.code === "UserNotConfirmedException") {
@@ -45,7 +45,7 @@ const Login = () => {
         setTimeout(
           () =>
             router.push(
-              `/confirm-signup?email=${encodeURIComponent(data.email)}`
+              `/confirm?email=${encodeURIComponent(data.email)}`
             ),
           2000
         );
@@ -68,7 +68,7 @@ const Login = () => {
             width={2294}
             height={450}
           />
-          <div className="rounded-2xl bg-white shadow-xl">
+          <div className="rounded-2xl bg-white border-4 border-jaffa-400">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="lg:p-11 p-7 mx-auto"
@@ -122,7 +122,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-800 transition-all duration-700 bg-jaffa-600 shadow-sm mb-11"
+                className="w-full h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-jaffa-600 transition-all duration-700 bg-jaffa-500 shadow-sm mb-11"
               >
                 Login
               </button>
@@ -132,7 +132,7 @@ const Login = () => {
                 className="flex justify-center text-gray-900 text-base font-medium leading-6"
               >
                 Don’t have an account?
-                <span className="text-jaffa-600 font-semibold pl-3">
+                <span className="text-jaffa-500 font-semibold pl-3">
                   {" "}
                   Register
                 </span>

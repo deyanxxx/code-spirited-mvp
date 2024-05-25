@@ -11,7 +11,7 @@ const AboutPage = () => {
               <div className="text-center lg:text-left lg:max-w-xl">
                 <h1 className="pb-5 text-center text-gray-700 font-extrabold font-manrope text-5xl lg:text-left">
                   It&apos;s all about the
-                  <span className="block text-jaffa-600 font-extrabold font-manrope text-5xl leading-relaxed">
+                  <span className="block text-jaffa-500 font-extrabold font-manrope text-5xl leading-relaxed">
                     learning journey
                   </span>
                 </h1>

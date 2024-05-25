@@ -1,5 +1,6 @@
 // components/AuthLayout.tsx
 
+import Loader from "@/components/Loader";
 import React, { ReactNode, Suspense } from "react";
 
 type AuthLayoutProps = {
@@ -9,7 +10,7 @@ type AuthLayoutProps = {
 const AuthLayout = ({ children }: AuthLayoutProps) => (
   <div className="min-h-screen antialiased bg-gradient-to-br from-[#FFD3A8] via-[#FFB370] to-[#FF8736]">
     <div className="w-full h-full">
-      <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+      <Suspense fallback={<Loader />}>{children}</Suspense>
     </div>
   </div>
 );

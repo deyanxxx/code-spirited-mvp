@@ -17,6 +17,10 @@ export async function middleware(request: NextRequest) {
     "/resend-code",
   ].some((route) => request.nextUrl.pathname.includes(route));
 
+  const isProtectedRoute = ["/account", "/p2p-coding-bootcamp/create"].some(
+    (route) => request.nextUrl.pathname.startsWith(route)
+  );
+
   const authenticated = await runWithAmplifyServerContext({
     nextServerContext: { request, response },
     operation: async (contextSpec) => {
@@ -32,6 +36,10 @@ export async function middleware(request: NextRequest) {
 
   if (authenticated && isAuthRoute) {
     return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  if (!authenticated && isProtectedRoute) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   return response;
